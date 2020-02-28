@@ -75,7 +75,15 @@ namespace сяп_сишарп_задание_2
             return temp;
         }
 
+
         public Student(string first_name, string last_name, string faculty)
+        {
+            this.first_name = FirstCapitalOthersNot(first_name);
+            this.last_name = FirstCapitalOthersNot(last_name);
+            this.faculty = FirstCapitalOthersNot(faculty);
+        }
+
+        public void ChangeInfo (string first_name, string last_name, string faculty)
         {
             this.first_name = FirstCapitalOthersNot(first_name);
             this.last_name = FirstCapitalOthersNot(last_name);
@@ -95,6 +103,5 @@ namespace сяп_сишарп_задание_2
             Student new_student = new Student(first_name, last_name, faculty);
             AddStudent(new_student);
         }
-
     }
 }
