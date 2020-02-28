@@ -133,7 +133,7 @@ namespace сяп_сишарп_задание_2
         internal List<Student> All_students { get => all_students; }
 
         public Students() { }
-        public Students (List<Student> all_students)
+        public Students(List<Student> all_students)
         {
             foreach (Student a in all_students)
                 this.all_students.Add(a);
@@ -148,20 +148,35 @@ namespace сяп_сишарп_задание_2
             AddStudent(new_student);
         }
 
-        public Students FindByFirstName (string str)
+        delegate bool BySomething(Student student, string str);
+        public static bool ByFirstName(Student student, string str)
         {
-            return new Students(all_students.Where(n => n.First_name == Student.FirstCapitalOthersNot(str)).ToList());
+            return student.First_name == Student.FirstCapitalOthersNot(str);
         }
+        public static bool ByLastName(Student student, string str)
+        {
+            return student.Last_name == Student.FirstCapitalOthersNot(str);
+        }
+        public static bool ByFaculty(Student student, string str)
+        {
+            return student.Faculty == Student.FirstCapitalOthersNot(str);
+        }
+        
 
-        public Students FindByLastName(string str)
-        {
-            return new Students(all_students.Where(n => n.Last_name == Student.FirstCapitalOthersNot(str)).ToList());
-        }
+        //public Students FindByFirstName (string str)
+        //{
+        //    return new Students(all_students.Where(n => n.First_name == Student.FirstCapitalOthersNot(str)).ToList());
+        //}
 
-        public Students FindByFaculty(string str)
-        {
-            return new Students(all_students.Where(n => n.Faculty == Student.FirstCapitalOthersNot(str)).ToList());
-        }
+        //public Students FindByLastName(string str)
+        //{
+        //    return new Students(all_students.Where(n => n.Last_name == Student.FirstCapitalOthersNot(str)).ToList());
+        //}
+
+        //public Students FindByFaculty(string str)
+        //{
+        //    return new Students(all_students.Where(n => n.Faculty == Student.FirstCapitalOthersNot(str)).ToList());
+        //}
 
         public void DeleteCurrStudent()
         {
