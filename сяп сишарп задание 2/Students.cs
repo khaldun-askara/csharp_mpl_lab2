@@ -131,5 +131,7 @@ namespace сяп_сишарп_задание_2
             return new Students(all_students.Where(n => n.Faculty == Student.FirstCapitalOthersNot(str)).ToList());
         }
 
+
+
     }
 }
