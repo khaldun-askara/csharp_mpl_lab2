@@ -79,7 +79,6 @@ namespace сяп_сишарп_задание_2
             return temp;
         }
 
-
         public Student(string first_name, string last_name, string faculty)
         {
             this.first_name = FirstCapitalOthersNot(first_name);
@@ -87,16 +86,49 @@ namespace сяп_сишарп_задание_2
             this.faculty = FirstCapitalOthersNot(faculty);
         }
 
-        public void ChangeInfo (string first_name, string last_name, string faculty)
+        public virtual void ChangeInfo (string first_name, string last_name, string faculty)
         {
             this.first_name = FirstCapitalOthersNot(first_name);
             this.last_name = FirstCapitalOthersNot(last_name);
             this.faculty = FirstCapitalOthersNot(faculty);
         }
     }
+
+    class Bachelor : Student
+    {
+
+        public Bachelor(string first_name, string last_name, string faculty) : base(first_name, last_name, faculty)
+        {
+
+        }
+
+        public void ChangeInfo(string first_name, string last_name, string faculty)
+        {
+            base.ChangeInfo(first_name, last_name, faculty);
+        }
+    }
+
+    class Master : Student
+    {
+        protected string degree_info;
+        public Master(string first_name, string last_name, string faculty, string degree_info) : base(first_name, last_name, faculty)
+        {
+            this.degree_info = degree_info;
+        }
+
+        public void ChangeInfo(string first_name, string last_name, string faculty, string degree_info)
+        {
+            base.ChangeInfo(first_name, last_name, faculty);
+            this.degree_info = degree_info;
+        }
+    }
+
+
+
     class Students
     {
         protected List<Student> all_students = new List<Student>();
+        protected int? curr_student = null;
 
         internal List<Student> All_students { get => all_students; }
 
@@ -131,7 +163,12 @@ namespace сяп_сишарп_задание_2
             return new Students(all_students.Where(n => n.Faculty == Student.FirstCapitalOthersNot(str)).ToList());
         }
 
-
+        public void DeleteCurrStudent()
+        {
+            if (!curr_student.HasValue)
+                return;
+            else all_students.RemoveAt(curr_student.Value);
+        }
 
     }
 }

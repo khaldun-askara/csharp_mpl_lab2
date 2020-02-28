@@ -60,8 +60,10 @@
             this.lbl_field = new System.Windows.Forms.Label();
             this.lbl_value = new System.Windows.Forms.Label();
             this.txtB_value = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_search = new System.Windows.Forms.Button();
             this.pnl_line = new System.Windows.Forms.Panel();
+            this.lbl_degree_info = new System.Windows.Forms.Label();
+            this.txtB_degree_info = new System.Windows.Forms.TextBox();
             this.mnS_main.SuspendLayout();
             this.pnl_info.SuspendLayout();
             this.pnl_search.SuspendLayout();
@@ -76,7 +78,7 @@
             this.студентыToolStripMenuItem});
             this.mnS_main.Location = new System.Drawing.Point(0, 0);
             this.mnS_main.Name = "mnS_main";
-            this.mnS_main.Size = new System.Drawing.Size(667, 30);
+            this.mnS_main.Size = new System.Drawing.Size(667, 28);
             this.mnS_main.TabIndex = 0;
             this.mnS_main.Text = "menuStrip1";
             // 
@@ -87,25 +89,25 @@
             this.создатьToolStripMenuItem,
             this.сохранитьToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.открытьToolStripMenuItem.Text = "Открыть";
             // 
             // создатьToolStripMenuItem
             // 
             this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.создатьToolStripMenuItem.Text = "Создать";
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             // 
             // просмотрToolStripMenuItem
@@ -114,19 +116,19 @@
             this.следующийToolStripMenuItem,
             this.предыдущийToolStripMenuItem});
             this.просмотрToolStripMenuItem.Name = "просмотрToolStripMenuItem";
-            this.просмотрToolStripMenuItem.Size = new System.Drawing.Size(94, 26);
+            this.просмотрToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
             this.просмотрToolStripMenuItem.Text = "Просмотр";
             // 
             // следующийToolStripMenuItem
             // 
             this.следующийToolStripMenuItem.Name = "следующийToolStripMenuItem";
-            this.следующийToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.следующийToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.следующийToolStripMenuItem.Text = "Следующий";
             // 
             // предыдущийToolStripMenuItem
             // 
             this.предыдущийToolStripMenuItem.Name = "предыдущийToolStripMenuItem";
-            this.предыдущийToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.предыдущийToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.предыдущийToolStripMenuItem.Text = "Предыдущий";
             // 
             // студентыToolStripMenuItem
@@ -138,7 +140,7 @@
             this.сделатьМагистромToolStripMenuItem,
             this.сделатьБакалавромToolStripMenuItem});
             this.студентыToolStripMenuItem.Name = "студентыToolStripMenuItem";
-            this.студентыToolStripMenuItem.Size = new System.Drawing.Size(87, 26);
+            this.студентыToolStripMenuItem.Size = new System.Drawing.Size(87, 24);
             this.студентыToolStripMenuItem.Text = "Студенты";
             // 
             // редактироватьToolStripMenuItem
@@ -239,6 +241,8 @@
             // pnl_info
             // 
             this.pnl_info.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pnl_info.Controls.Add(this.txtB_degree_info);
+            this.pnl_info.Controls.Add(this.lbl_degree_info);
             this.pnl_info.Controls.Add(this.lbl_lastname);
             this.pnl_info.Controls.Add(this.btn_next);
             this.pnl_info.Controls.Add(this.cmbb_degree);
@@ -252,13 +256,13 @@
             this.pnl_info.Controls.Add(this.txtB_firstname);
             this.pnl_info.Location = new System.Drawing.Point(189, 50);
             this.pnl_info.Name = "pnl_info";
-            this.pnl_info.Size = new System.Drawing.Size(288, 295);
+            this.pnl_info.Size = new System.Drawing.Size(288, 330);
             this.pnl_info.TabIndex = 9;
             // 
             // btn_ok
             // 
             this.btn_ok.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn_ok.Location = new System.Drawing.Point(162, 190);
+            this.btn_ok.Location = new System.Drawing.Point(162, 236);
             this.btn_ok.Name = "btn_ok";
             this.btn_ok.Size = new System.Drawing.Size(123, 40);
             this.btn_ok.TabIndex = 10;
@@ -268,7 +272,7 @@
             // btn_prev
             // 
             this.btn_prev.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn_prev.Location = new System.Drawing.Point(3, 236);
+            this.btn_prev.Location = new System.Drawing.Point(3, 282);
             this.btn_prev.Name = "btn_prev";
             this.btn_prev.Size = new System.Drawing.Size(123, 40);
             this.btn_prev.TabIndex = 11;
@@ -278,7 +282,7 @@
             // btn_next
             // 
             this.btn_next.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn_next.Location = new System.Drawing.Point(162, 236);
+            this.btn_next.Location = new System.Drawing.Point(162, 282);
             this.btn_next.Name = "btn_next";
             this.btn_next.Size = new System.Drawing.Size(123, 40);
             this.btn_next.TabIndex = 12;
@@ -288,13 +292,13 @@
             // pnl_search
             // 
             this.pnl_search.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pnl_search.Controls.Add(this.button1);
+            this.pnl_search.Controls.Add(this.btn_search);
             this.pnl_search.Controls.Add(this.txtB_value);
             this.pnl_search.Controls.Add(this.lbl_value);
             this.pnl_search.Controls.Add(this.lbl_field);
             this.pnl_search.Controls.Add(this.cmbb_field);
             this.pnl_search.Controls.Add(this.lbl_search);
-            this.pnl_search.Location = new System.Drawing.Point(189, 359);
+            this.pnl_search.Location = new System.Drawing.Point(189, 398);
             this.pnl_search.Name = "pnl_search";
             this.pnl_search.Size = new System.Drawing.Size(288, 222);
             this.pnl_search.TabIndex = 9;
@@ -341,30 +345,46 @@
             this.txtB_value.Size = new System.Drawing.Size(241, 22);
             this.txtB_value.TabIndex = 4;
             // 
-            // button1
+            // btn_search
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.Location = new System.Drawing.Point(83, 142);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 40);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_search.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_search.Location = new System.Drawing.Point(83, 142);
+            this.btn_search.Name = "btn_search";
+            this.btn_search.Size = new System.Drawing.Size(123, 40);
+            this.btn_search.TabIndex = 11;
+            this.btn_search.Text = "Поиск";
+            this.btn_search.UseVisualStyleBackColor = true;
             // 
             // pnl_line
             // 
             this.pnl_line.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnl_line.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnl_line.Location = new System.Drawing.Point(189, 351);
+            this.pnl_line.Location = new System.Drawing.Point(192, 390);
             this.pnl_line.Name = "pnl_line";
             this.pnl_line.Size = new System.Drawing.Size(288, 2);
             this.pnl_line.TabIndex = 10;
+            // 
+            // lbl_degree_info
+            // 
+            this.lbl_degree_info.AutoSize = true;
+            this.lbl_degree_info.Location = new System.Drawing.Point(21, 187);
+            this.lbl_degree_info.Name = "lbl_degree_info";
+            this.lbl_degree_info.Size = new System.Drawing.Size(208, 17);
+            this.lbl_degree_info.TabIndex = 13;
+            this.lbl_degree_info.Text = "Данные о дипломе бакалавра";
+            // 
+            // txtB_degree_info
+            // 
+            this.txtB_degree_info.Location = new System.Drawing.Point(24, 208);
+            this.txtB_degree_info.Name = "txtB_degree_info";
+            this.txtB_degree_info.Size = new System.Drawing.Size(241, 22);
+            this.txtB_degree_info.TabIndex = 14;
             // 
             // frm_students
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 632);
+            this.ClientSize = new System.Drawing.Size(667, 649);
             this.Controls.Add(this.pnl_line);
             this.Controls.Add(this.pnl_search);
             this.Controls.Add(this.pnl_info);
@@ -412,13 +432,15 @@
         private System.Windows.Forms.Button btn_prev;
         private System.Windows.Forms.Button btn_next;
         private System.Windows.Forms.Panel pnl_search;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.TextBox txtB_value;
         private System.Windows.Forms.Label lbl_value;
         private System.Windows.Forms.Label lbl_field;
         private System.Windows.Forms.ComboBox cmbb_field;
         private System.Windows.Forms.Label lbl_search;
         private System.Windows.Forms.Panel pnl_line;
+        private System.Windows.Forms.TextBox txtB_degree_info;
+        private System.Windows.Forms.Label lbl_degree_info;
     }
 }
 

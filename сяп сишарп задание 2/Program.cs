@@ -20,7 +20,8 @@ namespace сяп_сишарп_задание_2
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frm_students());
 
-            //Console.ReadKey();
+
+            Console.ReadKey();
         }
     }
 }
