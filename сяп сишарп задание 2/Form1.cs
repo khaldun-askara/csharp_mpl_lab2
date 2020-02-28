@@ -15,6 +15,7 @@ namespace сяп_сишарп_задание_2
         public Form1()
         {
             InitializeComponent();
+            
         }
     }
 }

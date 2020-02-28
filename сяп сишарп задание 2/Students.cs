@@ -21,9 +21,9 @@ namespace сяп_сишарп_задание_2
     }
     class Student
     {
-        private string first_name;
-        private string last_name;
-        private string faculty;
+        protected string first_name;
+        protected string last_name;
+        protected string faculty;
 
         public string First_name { get => first_name; }
         public string Last_name { get => last_name; }
@@ -96,8 +96,11 @@ namespace сяп_сишарп_задание_2
     }
     class Students
     {
-        List<Student> all_students = new List<Student>();
+        protected List<Student> all_students = new List<Student>();
 
+        internal List<Student> All_students { get => all_students; }
+
+        public Students() { }
         public Students (List<Student> all_students)
         {
             foreach (Student a in all_students)
@@ -113,9 +116,20 @@ namespace сяп_сишарп_задание_2
             AddStudent(new_student);
         }
 
-        public Students FindByName (string name)
+        public Students FindByFirstName (string str)
         {
-            return new Students(all_students.Where(n => n.First_name == name).ToList());
+            return new Students(all_students.Where(n => n.First_name == Student.FirstCapitalOthersNot(str)).ToList());
         }
+
+        public Students FindByLastName(string str)
+        {
+            return new Students(all_students.Where(n => n.Last_name == Student.FirstCapitalOthersNot(str)).ToList());
+        }
+
+        public Students FindByFaculty(string str)
+        {
+            return new Students(all_students.Where(n => n.Faculty == Student.FirstCapitalOthersNot(str)).ToList());
+        }
+
     }
 }
