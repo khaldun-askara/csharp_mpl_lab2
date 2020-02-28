@@ -25,6 +25,10 @@ namespace сяп_сишарп_задание_2
         private string last_name;
         private string faculty;
 
+        public string First_name { get => first_name; }
+        public string Last_name { get => last_name; }
+        public string Faculty { get => faculty; }
+
         //допустим, что в имени допускаются все буквы кириллицы и латиницы, а также "-" для имён типа Хмм-даже-не-знаю
         private static bool IsNormalChar(char a)
         {
@@ -94,6 +98,11 @@ namespace сяп_сишарп_задание_2
     {
         List<Student> all_students = new List<Student>();
 
+        public Students (List<Student> all_students)
+        {
+            foreach (Student a in all_students)
+                this.all_students.Add(a);
+        }
         public void AddStudent(Student new_student)
         {
             all_students.Add(new_student);
@@ -102,6 +111,11 @@ namespace сяп_сишарп_задание_2
         {
             Student new_student = new Student(first_name, last_name, faculty);
             AddStudent(new_student);
+        }
+
+        public Students FindByName (string name)
+        {
+            return new Students(all_students.Where(n => n.First_name == name).ToList());
         }
     }
 }
