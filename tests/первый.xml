@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ArrayOfStudent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Student xsi:type="Bachelor">
+    <first_name>Первый</first_name>
+    <last_name>Первый</last_name>
+    <faculty>Первый</faculty>
+  </Student>
+  <Student xsi:type="Master">
+    <first_name>Второй</first_name>
+    <last_name>Второй</last_name>
+    <faculty>Второй</faculty>
+    <degree_info>Второй</degree_info>
+  </Student>
+</ArrayOfStudent>

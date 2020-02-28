@@ -51,19 +51,19 @@
             this.txtB_faculty = new System.Windows.Forms.TextBox();
             this.cmbb_degree = new System.Windows.Forms.ComboBox();
             this.pnl_info = new System.Windows.Forms.Panel();
-            this.btn_ok = new System.Windows.Forms.Button();
-            this.btn_prev = new System.Windows.Forms.Button();
-            this.btn_next = new System.Windows.Forms.Button();
-            this.pnl_search = new System.Windows.Forms.Panel();
-            this.lbl_search = new System.Windows.Forms.Label();
-            this.cmbb_field = new System.Windows.Forms.ComboBox();
-            this.lbl_field = new System.Windows.Forms.Label();
-            this.lbl_value = new System.Windows.Forms.Label();
-            this.txtB_value = new System.Windows.Forms.TextBox();
-            this.btn_search = new System.Windows.Forms.Button();
-            this.pnl_line = new System.Windows.Forms.Panel();
-            this.lbl_degree_info = new System.Windows.Forms.Label();
             this.txtB_degree_info = new System.Windows.Forms.TextBox();
+            this.lbl_degree_info = new System.Windows.Forms.Label();
+            this.btn_next = new System.Windows.Forms.Button();
+            this.btn_prev = new System.Windows.Forms.Button();
+            this.btn_ok = new System.Windows.Forms.Button();
+            this.pnl_search = new System.Windows.Forms.Panel();
+            this.btn_search = new System.Windows.Forms.Button();
+            this.txtB_value = new System.Windows.Forms.TextBox();
+            this.lbl_value = new System.Windows.Forms.Label();
+            this.lbl_field = new System.Windows.Forms.Label();
+            this.cmbb_field = new System.Windows.Forms.ComboBox();
+            this.lbl_search = new System.Windows.Forms.Label();
+            this.pnl_line = new System.Windows.Forms.Panel();
             this.mnS_main.SuspendLayout();
             this.pnl_info.SuspendLayout();
             this.pnl_search.SuspendLayout();
@@ -97,18 +97,21 @@
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
             this.открытьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.открытьToolStripMenuItem.Text = "Открыть";
+            this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
             // создатьToolStripMenuItem
             // 
             this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
             this.создатьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.создатьToolStripMenuItem.Text = "Создать";
+            this.создатьToolStripMenuItem.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
             this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // просмотрToolStripMenuItem
             // 
@@ -124,12 +127,14 @@
             this.следующийToolStripMenuItem.Name = "следующийToolStripMenuItem";
             this.следующийToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.следующийToolStripMenuItem.Text = "Следующий";
+            this.следующийToolStripMenuItem.Click += new System.EventHandler(this.следующийToolStripMenuItem_Click);
             // 
             // предыдущийToolStripMenuItem
             // 
             this.предыдущийToolStripMenuItem.Name = "предыдущийToolStripMenuItem";
             this.предыдущийToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.предыдущийToolStripMenuItem.Text = "Предыдущий";
+            this.предыдущийToolStripMenuItem.Click += new System.EventHandler(this.предыдущийToolStripMenuItem_Click);
             // 
             // студентыToolStripMenuItem
             // 
@@ -148,30 +153,35 @@
             this.редактироватьToolStripMenuItem.Name = "редактироватьToolStripMenuItem";
             this.редактироватьToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
             this.редактироватьToolStripMenuItem.Text = "Редактировать";
+            this.редактироватьToolStripMenuItem.Click += new System.EventHandler(this.редактироватьToolStripMenuItem_Click);
             // 
             // добавитьToolStripMenuItem
             // 
             this.добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
             this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
             this.добавитьToolStripMenuItem.Text = "Добавить";
+            this.добавитьToolStripMenuItem.Click += new System.EventHandler(this.добавитьToolStripMenuItem_Click);
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
             this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
             this.удалитьToolStripMenuItem.Text = "Удалить";
+            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
             // сделатьМагистромToolStripMenuItem
             // 
             this.сделатьМагистромToolStripMenuItem.Name = "сделатьМагистромToolStripMenuItem";
             this.сделатьМагистромToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
             this.сделатьМагистромToolStripMenuItem.Text = "Сделать магистром";
+            this.сделатьМагистромToolStripMenuItem.Click += new System.EventHandler(this.сделатьМагистромToolStripMenuItem_Click);
             // 
             // сделатьБакалавромToolStripMenuItem
             // 
             this.сделатьБакалавромToolStripMenuItem.Name = "сделатьБакалавромToolStripMenuItem";
             this.сделатьБакалавромToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
             this.сделатьБакалавромToolStripMenuItem.Text = "Сделать бакалавром";
+            this.сделатьБакалавромToolStripMenuItem.Click += new System.EventHandler(this.сделатьБакалавромToolStripMenuItem_Click);
             // 
             // lbl_firstname
             // 
@@ -215,6 +225,7 @@
             this.txtB_firstname.Name = "txtB_firstname";
             this.txtB_firstname.Size = new System.Drawing.Size(241, 22);
             this.txtB_firstname.TabIndex = 5;
+            this.txtB_firstname.TextChanged += new System.EventHandler(this.txtB_firstname_TextChanged);
             // 
             // txtB_lastname
             // 
@@ -222,6 +233,7 @@
             this.txtB_lastname.Name = "txtB_lastname";
             this.txtB_lastname.Size = new System.Drawing.Size(241, 22);
             this.txtB_lastname.TabIndex = 6;
+            this.txtB_lastname.TextChanged += new System.EventHandler(this.txtB_lastname_TextChanged);
             // 
             // txtB_faculty
             // 
@@ -229,14 +241,17 @@
             this.txtB_faculty.Name = "txtB_faculty";
             this.txtB_faculty.Size = new System.Drawing.Size(241, 22);
             this.txtB_faculty.TabIndex = 7;
+            this.txtB_faculty.TextChanged += new System.EventHandler(this.txtB_faculty_TextChanged);
             // 
             // cmbb_degree
             // 
+            this.cmbb_degree.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbb_degree.FormattingEnabled = true;
             this.cmbb_degree.Location = new System.Drawing.Point(24, 160);
             this.cmbb_degree.Name = "cmbb_degree";
             this.cmbb_degree.Size = new System.Drawing.Size(241, 24);
             this.cmbb_degree.TabIndex = 8;
+            this.cmbb_degree.SelectedIndexChanged += new System.EventHandler(this.cmbb_degree_SelectedIndexChanged);
             // 
             // pnl_info
             // 
@@ -259,25 +274,22 @@
             this.pnl_info.Size = new System.Drawing.Size(288, 330);
             this.pnl_info.TabIndex = 9;
             // 
-            // btn_ok
+            // txtB_degree_info
             // 
-            this.btn_ok.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn_ok.Location = new System.Drawing.Point(162, 236);
-            this.btn_ok.Name = "btn_ok";
-            this.btn_ok.Size = new System.Drawing.Size(123, 40);
-            this.btn_ok.TabIndex = 10;
-            this.btn_ok.Text = "Добавить";
-            this.btn_ok.UseVisualStyleBackColor = true;
+            this.txtB_degree_info.Location = new System.Drawing.Point(24, 208);
+            this.txtB_degree_info.Name = "txtB_degree_info";
+            this.txtB_degree_info.Size = new System.Drawing.Size(241, 22);
+            this.txtB_degree_info.TabIndex = 14;
+            this.txtB_degree_info.TextChanged += new System.EventHandler(this.txtB_degree_info_TextChanged);
             // 
-            // btn_prev
+            // lbl_degree_info
             // 
-            this.btn_prev.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn_prev.Location = new System.Drawing.Point(3, 282);
-            this.btn_prev.Name = "btn_prev";
-            this.btn_prev.Size = new System.Drawing.Size(123, 40);
-            this.btn_prev.TabIndex = 11;
-            this.btn_prev.Text = "<<";
-            this.btn_prev.UseVisualStyleBackColor = true;
+            this.lbl_degree_info.AutoSize = true;
+            this.lbl_degree_info.Location = new System.Drawing.Point(21, 187);
+            this.lbl_degree_info.Name = "lbl_degree_info";
+            this.lbl_degree_info.Size = new System.Drawing.Size(208, 17);
+            this.lbl_degree_info.TabIndex = 13;
+            this.lbl_degree_info.Text = "Данные о дипломе бакалавра";
             // 
             // btn_next
             // 
@@ -288,6 +300,29 @@
             this.btn_next.TabIndex = 12;
             this.btn_next.Text = ">>";
             this.btn_next.UseVisualStyleBackColor = true;
+            this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
+            // 
+            // btn_prev
+            // 
+            this.btn_prev.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_prev.Location = new System.Drawing.Point(3, 282);
+            this.btn_prev.Name = "btn_prev";
+            this.btn_prev.Size = new System.Drawing.Size(123, 40);
+            this.btn_prev.TabIndex = 11;
+            this.btn_prev.Text = "<<";
+            this.btn_prev.UseVisualStyleBackColor = true;
+            this.btn_prev.Click += new System.EventHandler(this.btn_prev_Click);
+            // 
+            // btn_ok
+            // 
+            this.btn_ok.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_ok.Location = new System.Drawing.Point(162, 236);
+            this.btn_ok.Name = "btn_ok";
+            this.btn_ok.Size = new System.Drawing.Size(123, 40);
+            this.btn_ok.TabIndex = 10;
+            this.btn_ok.Text = "Добавить";
+            this.btn_ok.UseVisualStyleBackColor = true;
+            this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
             // 
             // pnl_search
             // 
@@ -303,48 +338,6 @@
             this.pnl_search.Size = new System.Drawing.Size(288, 222);
             this.pnl_search.TabIndex = 9;
             // 
-            // lbl_search
-            // 
-            this.lbl_search.AutoSize = true;
-            this.lbl_search.Location = new System.Drawing.Point(21, 17);
-            this.lbl_search.Name = "lbl_search";
-            this.lbl_search.Size = new System.Drawing.Size(48, 17);
-            this.lbl_search.TabIndex = 0;
-            this.lbl_search.Text = "Поиск";
-            // 
-            // cmbb_field
-            // 
-            this.cmbb_field.FormattingEnabled = true;
-            this.cmbb_field.Location = new System.Drawing.Point(24, 67);
-            this.cmbb_field.Name = "cmbb_field";
-            this.cmbb_field.Size = new System.Drawing.Size(241, 24);
-            this.cmbb_field.TabIndex = 1;
-            // 
-            // lbl_field
-            // 
-            this.lbl_field.AutoSize = true;
-            this.lbl_field.Location = new System.Drawing.Point(21, 47);
-            this.lbl_field.Name = "lbl_field";
-            this.lbl_field.Size = new System.Drawing.Size(42, 17);
-            this.lbl_field.TabIndex = 2;
-            this.lbl_field.Text = "Поле";
-            // 
-            // lbl_value
-            // 
-            this.lbl_value.AutoSize = true;
-            this.lbl_value.Location = new System.Drawing.Point(21, 94);
-            this.lbl_value.Name = "lbl_value";
-            this.lbl_value.Size = new System.Drawing.Size(73, 17);
-            this.lbl_value.TabIndex = 3;
-            this.lbl_value.Text = "Значение";
-            // 
-            // txtB_value
-            // 
-            this.txtB_value.Location = new System.Drawing.Point(24, 114);
-            this.txtB_value.Name = "txtB_value";
-            this.txtB_value.Size = new System.Drawing.Size(241, 22);
-            this.txtB_value.TabIndex = 4;
-            // 
             // btn_search
             // 
             this.btn_search.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -355,6 +348,49 @@
             this.btn_search.Text = "Поиск";
             this.btn_search.UseVisualStyleBackColor = true;
             // 
+            // txtB_value
+            // 
+            this.txtB_value.Location = new System.Drawing.Point(24, 114);
+            this.txtB_value.Name = "txtB_value";
+            this.txtB_value.Size = new System.Drawing.Size(241, 22);
+            this.txtB_value.TabIndex = 4;
+            // 
+            // lbl_value
+            // 
+            this.lbl_value.AutoSize = true;
+            this.lbl_value.Location = new System.Drawing.Point(21, 94);
+            this.lbl_value.Name = "lbl_value";
+            this.lbl_value.Size = new System.Drawing.Size(73, 17);
+            this.lbl_value.TabIndex = 3;
+            this.lbl_value.Text = "Значение";
+            // 
+            // lbl_field
+            // 
+            this.lbl_field.AutoSize = true;
+            this.lbl_field.Location = new System.Drawing.Point(21, 47);
+            this.lbl_field.Name = "lbl_field";
+            this.lbl_field.Size = new System.Drawing.Size(42, 17);
+            this.lbl_field.TabIndex = 2;
+            this.lbl_field.Text = "Поле";
+            // 
+            // cmbb_field
+            // 
+            this.cmbb_field.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbb_field.FormattingEnabled = true;
+            this.cmbb_field.Location = new System.Drawing.Point(24, 67);
+            this.cmbb_field.Name = "cmbb_field";
+            this.cmbb_field.Size = new System.Drawing.Size(241, 24);
+            this.cmbb_field.TabIndex = 1;
+            // 
+            // lbl_search
+            // 
+            this.lbl_search.AutoSize = true;
+            this.lbl_search.Location = new System.Drawing.Point(21, 17);
+            this.lbl_search.Name = "lbl_search";
+            this.lbl_search.Size = new System.Drawing.Size(48, 17);
+            this.lbl_search.TabIndex = 0;
+            this.lbl_search.Text = "Поиск";
+            // 
             // pnl_line
             // 
             this.pnl_line.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -363,22 +399,6 @@
             this.pnl_line.Name = "pnl_line";
             this.pnl_line.Size = new System.Drawing.Size(288, 2);
             this.pnl_line.TabIndex = 10;
-            // 
-            // lbl_degree_info
-            // 
-            this.lbl_degree_info.AutoSize = true;
-            this.lbl_degree_info.Location = new System.Drawing.Point(21, 187);
-            this.lbl_degree_info.Name = "lbl_degree_info";
-            this.lbl_degree_info.Size = new System.Drawing.Size(208, 17);
-            this.lbl_degree_info.TabIndex = 13;
-            this.lbl_degree_info.Text = "Данные о дипломе бакалавра";
-            // 
-            // txtB_degree_info
-            // 
-            this.txtB_degree_info.Location = new System.Drawing.Point(24, 208);
-            this.txtB_degree_info.Name = "txtB_degree_info";
-            this.txtB_degree_info.Size = new System.Drawing.Size(241, 22);
-            this.txtB_degree_info.TabIndex = 14;
             // 
             // frm_students
             // 
