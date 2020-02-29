@@ -189,7 +189,7 @@ namespace сяп_сишарп_задание_2
         public void Searching(BySomething filter)
         {
             search_first = all_students.FindIndex(n => filter(n));
-            if (!filter(all_students[curr_student.Value]))
+            if (curr_student.HasValue && !filter(all_students[curr_student.Value]))
             {
                 if (search_first == -1)
                     curr_student = null;

@@ -22,7 +22,6 @@ namespace сяп_сишарп_задание_2
         public void SearchOff()
         {
             current_filter = new BySomething(a=>true);
-            current_filter_str = "";
             cmbb_field.SelectedItem = null;
             txtB_value.Text = "";
         }
