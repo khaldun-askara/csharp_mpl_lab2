@@ -17,8 +17,23 @@ namespace сяп_сишарп_задание_2
         private string current_file_name;
         private Students current_list_of_student;
 
-        private BySomething current_filter = new BySomething(Students.All);
+        private BySomething current_filter = new BySomething(a=>true);
 
+        public void SearchOff()
+        {
+            current_filter = new BySomething(a=>true);
+            current_filter_str = "";
+            cmbb_field.SelectedItem = null;
+            txtB_value.Text = "";
+        }
+        public void BlockInfo()
+        {
+            txtB_firstname.Text = txtB_lastname.Text = txtB_faculty.Text = "";
+            cmbb_degree.SelectedItem = null;
+            txtB_degree_info.Visible = lbl_degree_info.Visible = btn_ok.Visible = false;
+            txtB_firstname.Enabled = txtB_lastname.Enabled = txtB_faculty.Enabled = cmbb_degree.Enabled = false;
+            
+        }
         public void EnableTxtB()
         {
             txtB_firstname.Enabled = txtB_lastname.Enabled = txtB_faculty.Enabled = cmbb_degree.Enabled = true;
@@ -33,27 +48,39 @@ namespace сяп_сишарп_задание_2
         public frm_students()
         {
             InitializeComponent();
-            txtB_degree_info.Visible = lbl_degree_info.Visible = btn_ok.Visible = false;
-            txtB_firstname.Enabled = txtB_lastname.Enabled = txtB_faculty.Enabled = cmbb_degree.Enabled = false;
-            btn_next.Enabled = btn_prev.Enabled = btn_search.Enabled = false;
-            txtB_value.Enabled = cmbb_field.Enabled = false;
+            BlockInfo();
+            btn_next.Enabled = btn_prev.Enabled = btn_search.Enabled = btn_reset.Enabled = false;
             cmbb_degree.Items.Add("Бакалавр");
             cmbb_degree.Items.Add("Магистр");
+            cmbb_field.Items.Add("Имя");
+            cmbb_field.Items.Add("Фамилия");
+            cmbb_field.Items.Add("Факультет");
             Editing();
+            txtB_value.Enabled = cmbb_field.Enabled = false;
         }
 
         private void ShowCurrStudent()
         {
             if (!current_list_of_student.Curr_student.HasValue)
             {
-                txtB_firstname.Text = txtB_lastname.Text = txtB_faculty.Text = "";
-                cmbb_degree.SelectedItem = null;
+                BlockInfo();
+                Editing();
+                if (txtB_value.Text == "" || txtB_value.Text == null)
+                    txtB_value.Enabled = cmbb_field.Enabled = false;
                 return;
             }
             Student curr_student = current_list_of_student.All_students[current_list_of_student.Curr_student.Value];
-            txtB_firstname.Text = curr_student.First_name;
-            txtB_lastname.Text = curr_student.Last_name;
-            txtB_faculty.Text = curr_student.Faculty;
+            txtB_firstname.Text = curr_student.first_name;
+            txtB_lastname.Text = curr_student.last_name;
+            txtB_faculty.Text = curr_student.faculty;
+            if (curr_student.GetType() == typeof(Master))
+            {
+                cmbb_degree.SelectedItem = cmbb_degree.Items[1];
+                Master temp = (Master)curr_student;
+                txtB_degree_info.Text = temp.degree_info;
+            }
+            if (curr_student.GetType() == typeof(Bachelor))
+                cmbb_degree.SelectedItem = cmbb_degree.Items[0];
 
             сохранитьToolStripMenuItem.Enabled = следующийToolStripMenuItem.Enabled = предыдущийToolStripMenuItem.Enabled
                 = редактироватьToolStripMenuItem.Enabled = удалитьToolStripMenuItem.Enabled = добавитьToolStripMenuItem.Enabled = true;
@@ -63,11 +90,10 @@ namespace сяп_сишарп_задание_2
             if ((string)cmbb_degree.SelectedItem == "Бакалавр")
                 сделатьМагистромToolStripMenuItem.Enabled = true;
 
-
             btn_next.Enabled = btn_prev.Enabled = true;
-            if (current_list_of_student.Curr_student == 0)
+            if (current_list_of_student.Curr_student == current_list_of_student.Search_first)
                 btn_prev.Enabled = false;
-            if (current_list_of_student.Curr_student == current_list_of_student.All_students.Count - 1)
+            if (current_list_of_student.Curr_student == current_list_of_student.Search_last)
                 btn_next.Enabled = false;
             следующийToolStripMenuItem.Enabled = btn_next.Enabled;
             предыдущийToolStripMenuItem.Enabled = btn_prev.Enabled;
@@ -79,7 +105,7 @@ namespace сяп_сишарп_задание_2
             if (dlg.ShowDialog() != DialogResult.OK)
                 return;
             current_file_name = dlg.FileName;
-
+            EnableTxtB();
             List<Student> temp_list = new List<Student>();
 
             var xs = new XmlSerializer(typeof(List<Student>));
@@ -97,12 +123,12 @@ namespace сяп_сишарп_задание_2
             }
 
             current_list_of_student = new Students(temp_list);
+            SearchOff();
+            current_list_of_student.Searching(current_filter);
             ShowCurrStudent();
 
             txtB_value.Enabled = cmbb_field.Enabled = true;
-            btn_search.Enabled = true;
         }
-
         private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             добавитьToolStripMenuItem_Click(sender, e);
@@ -111,6 +137,7 @@ namespace сяп_сишарп_задание_2
             else current_list_of_student.Clean();
             Editing();
             EnableTxtB();
+            SearchOff();
         }
 
         private void cmbb_degree_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,7 +151,10 @@ namespace сяп_сишарп_задание_2
             }
             data_intered();
         }
-
+        private void search_data_intered()
+        {
+            btn_search.Enabled = btn_reset.Enabled = cmbb_field.SelectedItem != null && txtB_value.Text != "" && txtB_value.Text != null;
+        }
         private void data_intered()
         {
             if (txtB_firstname.Text != "" && txtB_firstname.Text != null
@@ -143,14 +173,27 @@ namespace сяп_сишарп_задание_2
         private void btn_ok_Click(object sender, EventArgs e)
         {
             if (btn_ok.Text == "Ок")
-                current_list_of_student.All_students[current_list_of_student.Curr_student.Value].ChangeInfo(txtB_firstname.Text, txtB_lastname.Text, 
-                        txtB_faculty.Text);
+                try
+                {
+                    current_list_of_student.All_students[current_list_of_student.Curr_student.Value].ChangeInfo(txtB_firstname.Text, txtB_lastname.Text,
+                          txtB_faculty.Text);
+                }
+                catch (Exception ee)
+                {
+                    MessageBox.Show(ee.Message);
+                }
 
             try
             {
                 if (btn_ok.Text == "Ок")
                 {
-                    current_list_of_student.All_students[current_list_of_student.Curr_student.Value].ChangeInfo(txtB_firstname.Text, txtB_lastname.Text,
+                    if ((string)cmbb_degree.SelectedItem == "Магистр")
+                    {
+                        Master temp = (Master)current_list_of_student.All_students[current_list_of_student.Curr_student.Value];
+                        temp.ChangeInfo(txtB_firstname.Text, txtB_lastname.Text,
+                            txtB_faculty.Text, txtB_degree_info.Text);
+                    }
+                    else current_list_of_student.All_students[current_list_of_student.Curr_student.Value].ChangeInfo(txtB_firstname.Text, txtB_lastname.Text,
                             txtB_faculty.Text);
                     btn_ok.Visible = false;
                     ShowCurrStudent();
@@ -168,7 +211,10 @@ namespace сяп_сишарп_задание_2
                 return;
             }
             btn_ok.Visible = false;
+            current_list_of_student.Searching(current_filter);
+
             ShowCurrStudent();
+            txtB_value.Enabled = cmbb_field.Enabled = true;
         }
 
         private void txtB_firstname_TextChanged(object sender, EventArgs e)
@@ -206,9 +252,10 @@ namespace сяп_сишарп_задание_2
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             current_list_of_student.DeleteCurrStudent();
-            Editing();
-            добавитьToolStripMenuItem.Enabled = true;
+            //Editing();
+            current_list_of_student.Searching(current_filter);
             ShowCurrStudent();
+            добавитьToolStripMenuItem.Enabled = true;
         }
 
         private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -217,6 +264,7 @@ namespace сяп_сишарп_задание_2
             btn_ok.Visible = true;
             btn_ok.Enabled = false;
             btn_ok.Text = "Ок";
+            data_intered();
             EnableTxtB();
         }
 
@@ -229,6 +277,7 @@ namespace сяп_сишарп_задание_2
             current_list_of_student.AddStudent(temp);
             cmbb_degree.SelectedItem = cmbb_degree.Items[1];
             ShowCurrStudent();
+            редактироватьToolStripMenuItem_Click(sender, e);
         }
 
         private void сделатьБакалавромToolStripMenuItem_Click(object sender, EventArgs e)
@@ -244,13 +293,13 @@ namespace сяп_сишарп_задание_2
 
         private void btn_prev_Click(object sender, EventArgs e)
         {
-            current_list_of_student.Prev(current_filter, "");
+            current_list_of_student.Prev(current_filter);
             ShowCurrStudent();
         }
 
         private void btn_next_Click(object sender, EventArgs e)
         {
-            current_list_of_student.Next(current_filter, "");
+            current_list_of_student.Next(current_filter);
             ShowCurrStudent();
         }
 
@@ -285,6 +334,42 @@ namespace сяп_сишарп_задание_2
                     return;
                 }
             }
+        }
+
+        private void cmbb_field_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            search_data_intered();
+        }
+
+        private void txtB_value_TextChanged(object sender, EventArgs e)
+        {
+            search_data_intered();
+        }
+
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            try { NameConversion.FirstCapitalOthersNot(txtB_value.Text); }
+            catch (Exception ee)
+            {
+                MessageBox.Show(ee.Message);
+                return;
+            }
+            switch (cmbb_field.SelectedIndex)
+            {
+                case 0: current_filter = new BySomething(a => a.first_name == NameConversion.FirstCapitalOthersNot(txtB_value.Text)); break;
+                case 1: current_filter = new BySomething(a => a.last_name == NameConversion.FirstCapitalOthersNot(txtB_value.Text)); break;
+                case 2: current_filter = new BySomething(a => a.faculty == NameConversion.FirstCapitalOthersNot(txtB_value.Text)); break;
+            }
+            current_list_of_student.Searching(current_filter);
+            ShowCurrStudent();
+        }
+
+        private void btn_reset_Click(object sender, EventArgs e)
+        {
+            SearchOff();
+            current_list_of_student.Searching(current_filter);
+            current_list_of_student.Curr_student = 0;
+            ShowCurrStudent();
         }
     }
 }

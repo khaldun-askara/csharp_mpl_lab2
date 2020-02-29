@@ -64,6 +64,7 @@
             this.cmbb_field = new System.Windows.Forms.ComboBox();
             this.lbl_search = new System.Windows.Forms.Label();
             this.pnl_line = new System.Windows.Forms.Panel();
+            this.btn_reset = new System.Windows.Forms.Button();
             this.mnS_main.SuspendLayout();
             this.pnl_info.SuspendLayout();
             this.pnl_search.SuspendLayout();
@@ -327,6 +328,7 @@
             // pnl_search
             // 
             this.pnl_search.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pnl_search.Controls.Add(this.btn_reset);
             this.pnl_search.Controls.Add(this.btn_search);
             this.pnl_search.Controls.Add(this.txtB_value);
             this.pnl_search.Controls.Add(this.lbl_value);
@@ -341,12 +343,13 @@
             // btn_search
             // 
             this.btn_search.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn_search.Location = new System.Drawing.Point(83, 142);
+            this.btn_search.Location = new System.Drawing.Point(18, 142);
             this.btn_search.Name = "btn_search";
             this.btn_search.Size = new System.Drawing.Size(123, 40);
             this.btn_search.TabIndex = 11;
             this.btn_search.Text = "Поиск";
             this.btn_search.UseVisualStyleBackColor = true;
+            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
             // txtB_value
             // 
@@ -354,6 +357,7 @@
             this.txtB_value.Name = "txtB_value";
             this.txtB_value.Size = new System.Drawing.Size(241, 22);
             this.txtB_value.TabIndex = 4;
+            this.txtB_value.TextChanged += new System.EventHandler(this.txtB_value_TextChanged);
             // 
             // lbl_value
             // 
@@ -381,6 +385,7 @@
             this.cmbb_field.Name = "cmbb_field";
             this.cmbb_field.Size = new System.Drawing.Size(241, 24);
             this.cmbb_field.TabIndex = 1;
+            this.cmbb_field.SelectedIndexChanged += new System.EventHandler(this.cmbb_field_SelectedIndexChanged);
             // 
             // lbl_search
             // 
@@ -399,6 +404,17 @@
             this.pnl_line.Name = "pnl_line";
             this.pnl_line.Size = new System.Drawing.Size(288, 2);
             this.pnl_line.TabIndex = 10;
+            // 
+            // btn_reset
+            // 
+            this.btn_reset.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_reset.Location = new System.Drawing.Point(147, 142);
+            this.btn_reset.Name = "btn_reset";
+            this.btn_reset.Size = new System.Drawing.Size(123, 40);
+            this.btn_reset.TabIndex = 12;
+            this.btn_reset.Text = "Отменить";
+            this.btn_reset.UseVisualStyleBackColor = true;
+            this.btn_reset.Click += new System.EventHandler(this.btn_reset_Click);
             // 
             // frm_students
             // 
@@ -461,6 +477,7 @@
         private System.Windows.Forms.Panel pnl_line;
         private System.Windows.Forms.TextBox txtB_degree_info;
         private System.Windows.Forms.Label lbl_degree_info;
+        private System.Windows.Forms.Button btn_reset;
     }
 }
 

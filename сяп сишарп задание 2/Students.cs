@@ -20,7 +20,7 @@ namespace сяп_сишарп_задание_2
             this.message = message;
         }
     }
-    delegate bool BySomething(Student student, string str);
+    delegate bool BySomething(Student student);
 
     class NameConversion
     {
@@ -74,6 +74,7 @@ namespace сяп_сишарп_задание_2
             return temp;
         }
     }
+
     [Serializable]
     [XmlInclude(typeof(Master))]
     [XmlInclude(typeof(Bachelor))]
@@ -82,10 +83,6 @@ namespace сяп_сишарп_задание_2
         public string first_name;
         public string last_name;
         public string faculty;
-
-        public string First_name { get => first_name; }
-        public string Last_name { get => last_name; }
-        public string Faculty { get => faculty; }
 
         public Student() { }
 
@@ -104,22 +101,17 @@ namespace сяп_сишарп_задание_2
         }
 
     }
-
     public class Bachelor : Student
     {
         public Bachelor() { }
 
-        public Bachelor(string first_name, string last_name, string faculty) : base(first_name, last_name, faculty)
-        {
-
-        }
+        public Bachelor(string first_name, string last_name, string faculty) : base(first_name, last_name, faculty) {}
 
         public new void ChangeInfo(string first_name, string last_name, string faculty)
         {
             base.ChangeInfo(first_name, last_name, faculty);
         }
     }
-
     public class Master : Student
     {
         public string degree_info = "";
@@ -143,8 +135,12 @@ namespace сяп_сишарп_задание_2
         protected List<Student> all_students = new List<Student>();
         private int? curr_student = null;
 
+        private int search_first, search_last;
+
         public List<Student> All_students { get => all_students; }
-        public int? Curr_student { get => curr_student; }
+        public int Search_first { get => search_first; }
+        public int Search_last { get => search_last; }
+        public int? Curr_student { get => curr_student; set => curr_student = value; }
 
         public Students() { }
         public Students(List<Student> all_students)
@@ -157,7 +153,8 @@ namespace сяп_сишарп_задание_2
         {
             all_students.Add(new_student);
             if (curr_student.HasValue)
-                curr_student++;
+                //curr_student++;
+                curr_student = all_students.Count-1;
             else curr_student = 0;
         }
         public void AddStudent(string first_name, string last_name, string faculty)
@@ -172,41 +169,63 @@ namespace сяп_сишарп_задание_2
             AddStudent(new_student);
         }
 
-        public static bool ByFirstName(Student student, string str)
+        //public static bool ByFirstName(Student student, string str)
+        //{
+        //    return student.first_name == NameConversion.FirstCapitalOthersNot(str);
+        //}
+        //public static bool ByLastName(Student student, string str)
+        //{
+        //    return student.last_name == NameConversion.FirstCapitalOthersNot(str);
+        //}
+        //public static bool ByFaculty(Student student, string str)
+        //{
+        //    return student.faculty == NameConversion.FirstCapitalOthersNot(str);
+        //}
+        //public static bool All(Student student, string str)
+        //{
+        //    return true;
+        //}
+
+        public void Searching(BySomething filter)
         {
-            return student.First_name == NameConversion.FirstCapitalOthersNot(str);
-        }
-        public static bool ByLastName(Student student, string str)
-        {
-            return student.Last_name == NameConversion.FirstCapitalOthersNot(str);
-        }
-        public static bool ByFaculty(Student student, string str)
-        {
-            return student.Faculty == NameConversion.FirstCapitalOthersNot(str);
-        }
-        public static bool All(Student student, string str)
-        {
-            return true;
-        }
-        
-        public Student Next(BySomething filter, string str)
-        {
-            if (curr_student == all_students.Count - 1)
-                return null;
-            curr_student++;
-            if (filter(all_students[curr_student.Value], str))
-                return all_students[curr_student.Value];
-            else return Next(filter, str);
+            search_first = all_students.FindIndex(n => filter(n));
+            if (!filter(all_students[curr_student.Value]))
+            {
+                if (search_first == -1)
+                    curr_student = null;
+                else
+                    curr_student = search_first;
+            }
+            search_last = all_students.FindLastIndex(n => filter(n));
         }
 
-        public Student Prev(BySomething filter, string str)
+        public void Next(BySomething filter)
         {
-            if (curr_student == 0)
-                return null;
-            curr_student--;
-            if (filter(all_students[curr_student.Value], str))
-                return all_students[curr_student.Value];
-            else return Prev(filter, str);
+            if (curr_student == search_last)
+            {
+                return;
+            }
+            if (filter(all_students[curr_student.Value+1]))
+                curr_student++;
+            else
+            {
+                curr_student++;
+                Next(filter);
+            }
+        }
+
+
+        public void Prev(BySomething filter)
+        {
+            if (curr_student == search_first)
+                return;
+            if (filter(all_students[curr_student.Value-1]))
+                curr_student--;
+            else
+            {
+                curr_student--;
+                Prev(filter);
+            }
         }
 
         public void DeleteCurrStudent()
